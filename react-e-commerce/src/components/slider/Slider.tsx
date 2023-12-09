@@ -7,7 +7,7 @@ type props = {
 }
 
 
-const SliderArrow = styled.div`
+const SliderArrow = styled.div<props>`
     width: 50px;
     height: 50px;
     background-color: #fff7f7;
@@ -18,6 +18,8 @@ const SliderArrow = styled.div`
     position: absolute;
     top: 0;
     bottom: 0;
+    left: ${(props) => props.direction === "left" && "10px"};
+    right: ${(props) => props.direction === "right" && "10px"};
     margin: auto;
     cursor: pointer;
     opacity: 0.5;
@@ -27,13 +29,13 @@ const SliderArrow = styled.div`
 const Slider = () => {
     return (
         <div className='slider-container'>
-            <SliderArrow >
+            <SliderArrow direction="left">
                 <ArrowLeftOutlined />
             </SliderArrow>
             <div className="slider-wrapper">
                 <div className="slider">
                     <div className="img-container">
-                        <img src="" alt="" />
+                        <img src="https://images.pexels.com/photos/4464822/pexels-photo-4464822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
                     </div>
                     <div className="info-container">
                         <div className="slider-title">
@@ -48,7 +50,7 @@ const Slider = () => {
                     </div>
                 </div>
             </div>
-            <SliderArrow>
+            <SliderArrow direction="right">
                 <ArrowRightOutlined />
             </SliderArrow>
         </div>
