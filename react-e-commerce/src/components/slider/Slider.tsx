@@ -1,9 +1,20 @@
 import './slider.css';
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
+import { useState } from 'react';
 import styled from "styled-components";
+import { sliderItems } from '../../data';
+
 
 type props = {
-    direction : string,
+    direction: string,
+}
+
+type props_bg = {
+    bg: string
+}
+
+type prop_wrapper = {
+    sliderIndex : number
 }
 
 
@@ -18,42 +29,66 @@ const SliderArrow = styled.div<props>`
     position: absolute;
     top: 0;
     bottom: 0;
-    left: ${(props) => props.direction === "left" && "50px"};
-    right: ${(props) => props.direction === "right" && "50px"};
+    left: ${(props) => props.direction === "left" && "20px"};
+    right: ${(props) => props.direction === "right" && "20px"};
     margin: auto;
     cursor: pointer;
     opacity: 0.5;
     z-index: 2;
 `;
 
+const SliderDiv = styled.div<props_bg>`
+width: 100vw; 
+height: 100vh;
+display: flex;
+align-items: center;
+background-color: #${(props) => props.bg};
+`;
+
+const SliderWrapper = styled.div<prop_wrapper>`
+height: 100%;
+display: flex;
+transition: all 1.5s ease;
+transform: translateX(${props => props.sliderIndex * -100}vw);
+}
+`
+
+   
+
+
 const Slider = () => {
+    const [slideIndex, setSlideIndex] = useState(0)
+    const handleClick = (direction: string) => {
+        if(direction === "left"){
+            setSlideIndex(slideIndex > 0 ? slideIndex-1 : 2)
+        }else{
+            setSlideIndex(slideIndex < 2 ? slideIndex +1 : 0)
+        }
+    }
     return (
         <div className='slider-container'>
-            <SliderArrow direction="left">
+            <SliderArrow direction="left" onClick={() => handleClick("left")}>
                 <ArrowLeftOutlined />
             </SliderArrow>
-            <div className="slider-wrapper">
-                <div className="slider">
+            <SliderWrapper sliderIndex={slideIndex}>
+                {sliderItems.map((item) => (
+                <SliderDiv bg= {item.bg}>
                     <div className="img-container">
-                        <img src="https://images.pexels.com/photos/4464822/pexels-photo-4464822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                        <img src={item.img} alt="" />
                     </div>
                     <div className="info-container">
-                        <div className="slider-title">
-
-                        </div>
-                        <div className="slider-desc">
-
-                        </div>
-                        <div className="slider-button">
-
-                        </div>
+                        <h1 className="slider-title">{item.title}</h1>
+                        <p className="slider-desc">{item.desc}</p>
+                        <button className="slider-button">SHOW NOW</button>
                     </div>
-                </div>
-            </div>
-            <SliderArrow direction="right">
+                </SliderDiv>
+                ))}
+            </SliderWrapper>            
+            <SliderArrow direction="right" onClick={() => handleClick("right")}>
                 <ArrowRightOutlined />
             </SliderArrow>
-        </div>
+
+        </div >
     )
 }
 
