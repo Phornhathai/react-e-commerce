@@ -9,11 +9,11 @@ type categoriesProps = {
 }
 const CategoriesItem = ({ item }: categoriesProps) => {
     return (
-        <div className='CategoriesItem-container'>
-            <img src={item.img} alt="" />
-            <div className="CategoriesItemInfo">
-                <h1>{item.title}</h1>
-                <button>SHOP NOW</button>
+        <div className='categoriesItemContainer'>
+            <img className='categoriesImg' src={item.img} alt="" />
+            <div className="categoriesItemInfo">
+                <h1 className='categoriestitle'>{item.title}</h1>
+                <button className='categoriesBtn'>SHOP NOW</button>
             </div>
         </div>
     )

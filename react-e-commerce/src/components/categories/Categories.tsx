@@ -4,7 +4,7 @@ import './categories.css'
 
 const Categories = () => {
     return (
-        <div className='categories-container'>
+        <div className='categoriesContainer'>
             {categories.map(item => (
                 <CategoriesItem item={item} />
             ))}

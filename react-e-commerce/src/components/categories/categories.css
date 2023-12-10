@@ -1,21 +1,21 @@
-.categories-container{
+.categoriesContainer{
     display: flex;
 }
 
-.CategoriesItem-container{
+.categoriesItemContainer{
     flex: 1;
     margin: 3px;
     height: 70vh;
     position: relative;
 }
 
-img{
+.categoriesImg{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.CategoriesItemInfo{
+.categoriesItemInfo{
     position: absolute;
     top: 0;
     left: 0;
@@ -28,12 +28,12 @@ img{
 
 }
 
-h1{
+.categoriestitle{
     color: white;
     margin-bottom: 20px;
 }
 
-button{
+.categoriesBtn{
     border:none;
     padding: 10px;
     background-color: white;
